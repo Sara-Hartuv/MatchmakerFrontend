@@ -9,14 +9,14 @@ type Props = {
 }
 
 export default function AuthGuard({ children }: Props) {
-    const { isAuthanticated, isInitialized } = useAppSelector(selectAuth)
+    const { isAuthenticated, isInitialized } = useAppSelector(selectAuth)
     const { pathname } = useLocation()
 
     if (!isInitialized) {
         return <h1>Loading...</h1>
     }
 
-    if (!isAuthanticated) {
+    if (!isAuthenticated) {
         return <Navigate to={PATHS.login} state={pathname} />
     }
 

@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from "react"
 import { useAppDispatch } from "../redux/store"
-import { AuthUser } from "../types/user.types"
 import { getSession, isValidToken, setAuthorizationHeader } from "./auth.utils"
 import { setInitialize, setUser } from "../redux/auth/auth.slice"
 
@@ -12,11 +11,11 @@ export default function InitializeAuth({ children }: Props) {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const authUser: AuthUser | null = getSession()
-        if (authUser?.token && isValidToken(authUser.token)) {
+        const token: string | null = getSession();
+        if (token && isValidToken(token)) {
             // בדיקה האם הטוקן שווה לנתוני היוזר
-            dispatch(setUser(authUser.user))
-            setAuthorizationHeader(authUser.token)
+            dispatch(setUser(token))
+            setAuthorizationHeader(token)
         }
         dispatch(setInitialize())
     }, [])

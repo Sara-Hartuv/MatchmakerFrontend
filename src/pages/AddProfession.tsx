@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import axiosInstance from "../utils/axios"; // ייבוא axiosInstance
+import { addProfession } from "../services/profession.service"; // ייבוא השירות החדש
 import { useNavigate } from "react-router-dom";
-import { FaBriefcase, FaAlignLeft } from "react-icons/fa";
 import "../styles/addProfession.css";
 
 export default function AddProfession() {
@@ -24,11 +23,7 @@ export default function AddProfession() {
     setSuccess(""); // איפוס הודעות הצלחה לפני ניסיון הוספה
 
     try {
-      const response = await axiosInstance.post("/Profession", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await addProfession(formData.name, formData.description);
       setSuccess("המקצוע נוסף בהצלחה!");
       setFormData({ name: "", description: "" });
       navigate("/home");
@@ -47,10 +42,11 @@ export default function AddProfession() {
         {success && <p className="success-message">{success}</p>}
 
         <div className="input-group">
-          <FaBriefcase className="input-icon" />
-          <input
+          <label htmlFor="name">שם המקצוע</label>
+                    <input
             type="text"
             name="name"
+            id="name"
             placeholder="שם המקצוע"
             value={formData.name}
             onChange={handleChange}
@@ -59,9 +55,10 @@ export default function AddProfession() {
         </div>
 
         <div className="input-group">
-          <FaAlignLeft className="input-icon" />
-          <textarea
+          <label htmlFor="description">תיאור</label>
+                    <textarea
             name="description"
+            id="description"
             placeholder="תיאור"
             value={formData.description}
             onChange={handleChange}

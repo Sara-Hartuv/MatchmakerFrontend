@@ -3,7 +3,7 @@ import { getSession, isValidToken, removeSession } from "../auth/auth.utils"
 
 export const authRequestMiddleware = (request: InternalAxiosRequestConfig) => {
     const authUser = getSession()
-    if (!authUser || !isValidToken(authUser.token)) {
+    if (!authUser || !isValidToken(authUser)) {
         removeSession();
         Promise.reject('Unauthorized')
     }
