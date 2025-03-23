@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
     <div className="login-page">
       {/* כפתורי ההרשמה וההתחברות מתחת לניווט */}
       <div className="auth-buttons">
-        <button className="auth-button" onClick={() => navigate("/register")}>
+        <button className="auth-button" onClick={() => navigate("/signup")}>
           הרשמה
         </button>
         <button className="auth-button" onClick={() => navigate("/login")}>

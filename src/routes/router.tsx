@@ -10,7 +10,7 @@ import AuthGuard from "../auth/AuthGuard";
 import GuestGuard from "../auth/GuestGuard";
 import CandidateGuard from "../auth/CandidateGuard";
 import MainLayout from "../layouts/MainLayout"; // ✅ ייבוא ה-Layout
-
+import ProposalsPage from "../pages/ProposalsPage"; // ✅ ייבוא העמוד החדש
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +22,7 @@ export const router = createBrowserRouter([
       { path: PATHS.city, element: <AuthGuard><City /></AuthGuard> },
       { path: PATHS.updateCandidate, element: <UpdateCandidate /> },
       { path: PATHS.getConfirmationCandidates, element: <ConfirmationCandidatesList /> },
+      { path: PATHS.proposals, element: <AuthGuard><ProposalsPage /></AuthGuard> }, // ✅ הוספת עמוד ההצעות
       { path: "*", element: <Navigate to={PATHS.home} /> },
     ],
   },

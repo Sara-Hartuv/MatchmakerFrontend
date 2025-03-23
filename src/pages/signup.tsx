@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import "../styles/login.css";
+import { signUp } from "../services/auth.service";
+import { setSession } from "../auth/auth.utils";
+import { jwtDecode } from "jwt-decode";
+import { useAppDispatch } from "../redux/store";
+import { setUser } from "../redux/auth/auth.slice";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [userType, setUserType] = useState("candidate"); // ברירת מחדל: מועמד
   const [error, setError] = useState("");
-
+  const dispatch = useAppDispatch();
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -17,24 +24,22 @@ const SignUp: React.FC = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/api/User/SignUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const token = await signUp(email, password, userType);
+      console.log("Token:", token);
+      const decodedUser = jwtDecode<any>(token);
 
-      const data = await response.json();
+     console.log("Decoded User:", decodedUser);
 
-      if (response.ok) {
+      dispatch(setUser(token));
+      setSession(token);
+
+      if (token) {
         console.log("Sign up successful!");
+        alert("נרשמת בהצלחה!");
         // Redirect to the login page or perform other actions
-      } else {
-        setError(data.message || "Sign up failed");
       }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
+    } catch (error: any) {
+      setError(error.message || "An error occurred. Please try again.");
     }
   };
 
@@ -64,10 +69,37 @@ const SignUp: React.FC = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+
+          {/* Checkbox לבחירת סוג המשתמש */}
+          <div className="checkbox-group">
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="candidate"
+                checked={userType === "candidate"}
+                onChange={(e) => setUserType(e.target.value)}
+              />
+              מועמד
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="matchmaker"
+                checked={userType === "matchmaker"}
+                onChange={(e) => setUserType(e.target.value)}
+              />
+              שדכן
+            </label>
+          </div>
+
           <button type="submit">Sign Up 🚀</button>
         </form>
         {error && <p className="error">{error}</p>}
-        <p className="signup-link">Already have an account? <a href="/login">Login!</a></p>
+        <p className="signup-link">
+          Already have an account? <a href="/login">Login!</a>
+        </p>
       </div>
     </div>
   );

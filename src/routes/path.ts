@@ -1,4 +1,3 @@
-
 export const PATHS = {
     login: '/login',
     signup: '/signup',
@@ -6,4 +5,6 @@ export const PATHS = {
     city: '/city',
     updateCandidate: '/updateCandidate',
     getConfirmationCandidates: '/GetConfirmationCandidates',
-}
+    // נתיב חדש לעמוד ההצעות
+    proposals: '/proposals',
+};

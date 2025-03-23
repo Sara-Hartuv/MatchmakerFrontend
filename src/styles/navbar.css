@@ -1,49 +1,106 @@
+/* עיצוב הניווט */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #3e0f0f; /* צבע יין כהה */
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.9); /* רקע שקוף */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(74, 28, 64, 0.3); /* צל בגוון בורדו כהה */
+  position: fixed; /* מקבע את הניווט לראש הדף */
+  top: 0;
+  left: 0;
+  width: 100%; /* מתוח לאורך כל הדף */
+  z-index: 1000; /* מבטיח שהניווט יהיה מעל כל האלמנטים */
+  backdrop-filter: blur(10px); /* אפקט טשטוש */
+}
+
+/* עיצוב לוגו */
+.navbar-logo img {
+  height: 50px;
+  cursor: pointer;
+}
+
+/* עיצוב רשימת הקישורים */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+/* עיצוב קישורים */
+.navbar-links a,
+.logout-btn {
+  text-decoration: none;
+  color: #4a1c40; /* גוון בורדו כהה */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover,
+.logout-btn:hover {
+  background-color: rgba(90, 31, 31, 0.2); /* רקע שקוף בגוון בורדו כהה */
+  color: #7a3d57; /* גוון בורדו בהיר יותר */
+}
+
+/* עיצוב כפתור הרשמה/התחברות */
+.auth-link {
+  background-color: #ac2c5d; /* צבע אדום עמוק עם שקיפות */
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #ffffff; /* טקסט לבן */
+}
+
+.auth-link:hover {
+  background-color: rgba(165, 42, 42, 0.9); /* גוון בהיר יותר */
+}
+
+/* עיצוב רספונסיבי */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* מסדר את האלמנטים בטור */
+    align-items: flex-start;
+    padding: 10px;
   }
-  
-  .navbar-logo img {
-    height: 50px;
-  }
-  
+
   .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    flex-direction: column; /* מסדר את הקישורים בטור */
+    gap: 10px;
+    width: 100%;
   }
-  
+
   .navbar-links li {
-    display: inline;
+    width: 100%;
   }
-  
-  .navbar-links a,
-  .logout-btn {
-    text-decoration: none;
-    color: #f5e1da; /* גוון שמנת */
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: background 0.3s;
+
+  .navbar-links a {
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
   }
-  
-  .navbar-links a:hover,
-  .logout-btn:hover {
-    background-color: #5a1f1f; /* צבע יין כהה יותר */
-  }
-  
-  .auth-link {
-    background-color: #8b0000; /* צבע אדום עמוק לרישום והתחברות */
-    padding: 8px 12px;
-    border-radius: 8px;
-  }
-  
-  .auth-link:hover {
-    background-color: #a52a2a; /* גוון בהיר יותר */
-  }
-  
+}
+
+/* עיצוב כפתור התנתקות */
+.logout-btn {
+  background-color: #ac2c5d; /* צבע אדום עמוק */
+  color: #ffffff; /* טקסט לבן */
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: rgba(165, 42, 42, 0.9); /* גוון בהיר יותר */
+  transform: scale(1.05);
+}
