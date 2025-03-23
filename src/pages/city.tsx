@@ -1,31 +1,34 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { addCity } from "../services/city.service";
 import "../styles/city.css";
 
-const AddCity: React.FC = () => {
+export default function AddCity() {
   const [cityName, setCityName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCityName(e.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setCityName(value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError("");
+    setSuccess("");
+
     if (cityName.trim() === "") {
       setError("City name is required");
       return;
     }
 
     try {
-      const response = await axios.post("https://localhost:7242/api/City", { name: cityName });
-      console.log("City added:", response.data);
+      const response = await addCity(cityName);
+      console.log("City added:", response);
       setSuccess("City added successfully!");
       setCityName("");
-      setError("");
-    } catch (err) {
-      console.log("Error adding city:", err);
+    } catch (error) {
+      console.log("Error adding city:", error);
       setError("Failed to add city. Please try again.");
     }
   };
@@ -55,6 +58,4 @@ const AddCity: React.FC = () => {
       </form>
     </div>
   );
-};
-
-export default AddCity;
+}

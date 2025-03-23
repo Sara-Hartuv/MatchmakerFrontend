@@ -1,10 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
+import { login } from "../services/auth.service";
 import { useAppDispatch } from "../redux/store";
 import { setUser } from "../redux/auth/auth.slice";
 import { setSession } from "../auth/auth.utils";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { jwtDecode } from "jwt-decode";
 import "../styles/login.css";
+import { useAppSelector } from "../redux/store";
+import { selectAuth } from "../redux/auth/auth.selectors";
 
 export default function LoginPage() {
   const [userData, setUserData] = useState({
@@ -24,22 +26,17 @@ export default function LoginPage() {
     setError(""); // איפוס הודעות שגיאה לפני ניסיון התחברות
 
     try {
-      const params = new URLSearchParams();
-      params.append("email", userData.email);
-      params.append("password", userData.password);
+      const token = await login(userData.email, userData.password);
+      console.log("Token:", token);
+   
 
-      const response = await axios.post(
-        "https://localhost:7242/api/Login/login",
-        params,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
-      const authUser = response.data;
-      dispatch(setUser(authUser.user));
-      setSession(authUser);
+      const decodedUser = jwtDecode<any>(token);
+
+     console.log("Decoded User:", decodedUser);
+
+      dispatch(setUser(token));
+      setSession(token);
+
       alert("התחברת");
     } catch (error) {
       console.log("Error during login:", error);
@@ -50,12 +47,11 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
-        <h2>ברוך הבא לשידוכים</h2>
+        <h2></h2>
 
         {error && <p className="error-message">{error}</p>}
 
         <div className="input-group">
-          <FaEnvelope className="input-icon" />
           <input
             type="email"
             name="email"
@@ -67,7 +63,6 @@ export default function LoginPage() {
         </div>
 
         <div className="input-group">
-          <FaLock className="input-icon" />
           <input
             type="password"
             name="password"
@@ -78,7 +73,7 @@ export default function LoginPage() {
           />
         </div>
 
-        <button className="login-button">התחבר</button>
+        <button className="login-button" >התחבר</button>
       </form>
     </div>
   );

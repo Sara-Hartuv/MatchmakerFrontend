@@ -9,10 +9,10 @@ type Props = {
 }
 
 export default function GuestGuard({ children }: Props) {
-    const { isAuthanticated, isInitialized } = useAppSelector(selectAuth)
+    const { isAuthenticated, isInitialized } = useAppSelector(selectAuth)
     const { state } = useLocation()
 
-    if (isAuthanticated) {
+    if (isAuthenticated) {
         return <Navigate to={state || PATHS.home} />
     }
 

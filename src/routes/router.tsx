@@ -1,30 +1,28 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login";
 import SignUp from "../pages/signup";
 import HomePage from "../pages/home";
 import City from "../pages/city";
-import { PATHS } from "./path";  // אם אתה משתמש ב-PATHS לצורך ניהול הנתיבים
+import UpdateCandidate from "../pages/updateCandidate";
+import ConfirmationCandidatesList from "../pages/confirmationCandidatesList";
+import { PATHS } from "./path";
+import AuthGuard from "../auth/AuthGuard";
+import GuestGuard from "../auth/GuestGuard";
+import CandidateGuard from "../auth/CandidateGuard";
+import MainLayout from "../layouts/MainLayout"; // ✅ ייבוא ה-Layout
 
 export const router = createBrowserRouter([
   {
-    path: PATHS.home,
-    element: <HomePage />,
+    path: "/",
+    element: <MainLayout />, // ✅ עוטפים את כל הנתיבים ב-Layout
+    children: [
+      { path: PATHS.home, element: <HomePage /> },
+      { path: PATHS.login, element: <Login /> },
+      { path: PATHS.signup, element: <GuestGuard><SignUp /></GuestGuard> },
+      { path: PATHS.city, element: <AuthGuard><City /></AuthGuard> },
+      { path: PATHS.updateCandidate, element: <UpdateCandidate /> },
+      { path: PATHS.getConfirmationCandidates, element: <ConfirmationCandidatesList /> },
+      { path: "*", element: <Navigate to={PATHS.home} /> },
+    ],
   },
-  {
-    path: PATHS.login,
-    element: <Login />,
-  },
-  {
-    path: PATHS.signup,
-    element: <SignUp />,
-  },
-  {
-    path: PATHS.city,
-    element: <City />,
-  },
-  {
-    path: "*",
-    element: <Navigate to={PATHS.home} />,
-  },
-
 ]);
