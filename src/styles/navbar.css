@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3e0f0f; /* צבע יין כהה */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-logo img {
+    height: 50px;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-links li {
+    display: inline;
+  }
+  
+  .navbar-links a,
+  .logout-btn {
+    text-decoration: none;
+    color: #f5e1da; /* גוון שמנת */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+  
+  .navbar-links a:hover,
+  .logout-btn:hover {
+    background-color: #5a1f1f; /* צבע יין כהה יותר */
+  }
+  
+  .auth-link {
+    background-color: #8b0000; /* צבע אדום עמוק לרישום והתחברות */
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+  
+  .auth-link:hover {
+    background-color: #a52a2a; /* גוון בהיר יותר */
+  }
+  
