@@ -28,6 +28,8 @@ export const removeSession = () => {
   window.location.href = PATHS.login;
 };
 
+
+
 export function jwtDecode(token: string) {
   try {
     const base64Url = token.split(".")[1];
@@ -46,17 +48,25 @@ export function jwtDecode(token: string) {
   }
 }
 
+
+
 export const isValidToken = (token: string): boolean => {
   if (!token) return false;
 
-  const decoded = jwtDecode(token);
-  if (!decoded || !decoded.exp) return false;
+  try {
+    const decoded: any = jwtDecode(token);
+    if (!decoded || !decoded.exp) return false;
 
-  const currentTime = Date.now() / 1000;
-  return decoded.exp > currentTime;
+    const currentTime = Math.floor(Date.now() / 1000);
+    return decoded.exp > currentTime;
+  } catch (error) {
+    console.error("Token decoding failed:", error);
+    return false;
+  }
 };
 
-export const getUserIdFromToken = (): string | null => {
+
+export const getUserIdFromToken = (): number | null => {
   const session = getSession();
   if (!session || !isValidToken(session)) return null;
 

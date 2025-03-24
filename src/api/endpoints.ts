@@ -10,5 +10,5 @@ export const ENDPOINTS = {
   deleteCandidate: (id: number) => `/Candidate/${id}`,
   getConfirmationCandidates: "/Candidate/GetConfirmationCandidates",
   // הוספת נקודת קצה לקבלת כל ההצעות למשתמש
-  getProposalsForUser: (userId: number) => `/Proposals/User/${userId}`,
+  getProposalsForUser: (userId: number) => `/Match/GetAllMatchById${userId}`,
 };

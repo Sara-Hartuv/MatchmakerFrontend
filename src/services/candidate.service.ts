@@ -40,3 +40,7 @@ export const deleteCandidate = async (id: number) => {
   const response = await axiosInstance.delete(ENDPOINTS.deleteCandidate(id));
   return response.data;
 };
+// **שליפת כל המועמדים שאושרו**
+ export const getAllMyMatch = async (id: number) => {
+  const response = await axiosInstance.get(ENDPOINTS.getProposalsForUser(id));
+  return response;};// מחזיר את התשובה מהשרת
