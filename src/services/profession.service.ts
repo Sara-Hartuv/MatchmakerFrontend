@@ -8,3 +8,14 @@ export const addProfession = async (name: string, description: string) => {
   });
   return response.data;
 };
+
+
+export const getProfessions = async () => {
+  try {
+    const response = await axiosInstance.get("/Profession");
+    return response.data; // מחזיר את רשימת המקצועות
+  } catch (error) {
+    console.log("שגיאה בשליפת רשימת המקצועות:", error);
+    throw error;
+  }
+};

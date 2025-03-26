@@ -25,13 +25,15 @@ export const confirmCandidate = async (id: number) => {
   return response.data;
 };
 
-// **עדכון מועמד לפי ID**
 export const updateCandidate = async (id: number, formData: any) => {
+
+  // ביצוע הבקשה לשרת
   const response = await axiosInstance.put(ENDPOINTS.updateCandidate(id), formData, {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json" // חשוב להגדיר את סוג התוכן כ-multipart/form-data
     },
   });
+
   return response.data;
 };
 

@@ -28,7 +28,7 @@ export default function NavBar() {
         {token && (
           <>
             <li><Link to={PATHS.proposals}>הצעות</Link></li>
-            <li><Link to="/profile">הפרופיל שלי</Link></li>
+            <li><Link to={PATHS.updateCandidate}>הפרופיל שלי</Link></li>
           </>
         )}
 
