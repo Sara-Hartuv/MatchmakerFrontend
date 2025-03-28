@@ -1,10 +1,10 @@
 import { ThunkAction, UnknownAction, configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import authrReducer from './auth/auth.slice'
+import authReducer from './auth/auth.slice'
 
 export const store = configureStore({
     reducer: {
-        auth: authrReducer
+        auth: authReducer
     }
 })
 

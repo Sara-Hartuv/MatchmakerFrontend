@@ -1,4 +1,3 @@
-import { e } from "react-router/dist/development/route-data-BmvbmBej";
 import { ENDPOINTS } from "../api/endpoints";
 import axiosInstance from "../utils/axios";
 
@@ -44,3 +43,5 @@ export const login = async (email: string, password: string) => {
   console.log(response.data);
   return response.data; // מחזירים את הנתונים אחרי שהתשובה מתקבלת
 };
+
+

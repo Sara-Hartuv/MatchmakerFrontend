@@ -28,19 +28,14 @@ export const removeSession = () => {
   window.location.href = PATHS.login;
 };
 
-
-
-export function jwtDecode(token: string) {
+export function jwtDecode<T = any>(token: String): T | null {
   try {
     const base64Url = token.split(".")[1];
+    if (!base64Url) return null; // אם הטוקן לא תקין
+
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      window
-        .atob(base64)
-        .split("")
-        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
-        .join("")
-    );
+    const jsonPayload = atob(base64);
+    
     return JSON.parse(jsonPayload);
   } catch (error) {
     console.error("Error decoding token:", error);
@@ -50,17 +45,16 @@ export function jwtDecode(token: string) {
 
 
 
+
 export const isValidToken = (token: string): boolean => {
   if (!token) return false;
 
   try {
     const decoded: any = jwtDecode(token);
-    if (!decoded || !decoded.exp) return false;
-
-    const currentTime = Math.floor(Date.now() / 1000);
-    return decoded.exp > currentTime;
+    const now = Date.now() / 1000;
+    return decoded && decoded.exp && decoded.exp > now;
   } catch (error) {
-    console.error("Token decoding failed:", error);
+    console.error("Error decoding token:", error);
     return false;
   }
 };

@@ -1,22 +1,20 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9; /* רקע כללי */
+  background-color: #f4f4f9;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* מיקום למטה */
+  align-items: center;
   height: 100vh;
   margin: 0;
-  padding-top: 50px; /* ריווח מלמעלה */
 }
 
 .add-candidate-container {
   width: 100%;
-  max-width: 600px;
-  background: #fffaf0; /* רקע שמנת */
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* צל מודגש */
-  border: 2px solid #800020; /* מסגרת בורדו */
+  max-width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .add-candidate-card {
@@ -26,10 +24,8 @@ body {
 }
 
 h2 {
-  color: #800020; /* כותרת בצבע בורדו */
-  margin-bottom: 25px;
-  font-size: 24px;
-  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 form {
@@ -40,56 +36,30 @@ form {
 
 input, select, textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 16px;
-  background-color: #e0f7fa; /* רקע תכלת בהיר */
-  transition: border-color 0.3s;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #800020; /* צבע גבול בורדו בעת פוקוס */
-  outline: none;
 }
 
 button {
-  background-color: #800020; /* כפתור בצבע בורדו */
+  background-color: #4CAF50;
   color: white;
-  padding: 12px;
+  padding: 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #a8324a; /* גוון בהיר יותר של בורדו */
-  transform: scale(1.05); /* אפקט הגדלה קל */
-}
-
-button:active {
-  transform: scale(0.98); /* אפקט לחיצה */
+  background-color: #45a049;
 }
 
 @media (max-width: 600px) {
   .add-candidate-container {
     width: 90%;
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  input, select, textarea {
-    font-size: 14px;
-  }
-
-  button {
-    font-size: 16px;
   }
 }

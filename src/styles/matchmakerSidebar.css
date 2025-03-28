@@ -1,0 +1,67 @@
+/* כלליים לתפריט צד */
+.sidebar {
+    width: 16rem; /* רוחב */
+    background-color: #2d3748; /* צבע רקע כהה */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+  }
+  
+  /* תמונת פרופיל מעגלית */
+  .sidebar .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar .profile .profile-picture {
+    width: 5rem;
+    height: 5rem;
+    background: linear-gradient(135deg, #9b4dca, #f91a73); /* גרדיאנט */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* כפתורים */
+  .sidebar button {
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    text-align: left;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    background-color: transparent;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  /* כפתור כאשר נבחר */
+  .sidebar button.active {
+    background-color: #6b46c1; /* צבע רקע בעת בחירה */
+  }
+  
+  /* מעבר צבע בכפתור */
+  .sidebar button:hover {
+    background-color: #9b4dca; /* צבע בעת ריחוף */
+  }
+  
+  /* כפתור יציאה */
+  .sidebar .logout-button {
+    margin-top: auto;
+    background-color: #e53e3e;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar .logout-button:hover {
+    background-color: #c53030;
+  }
+  

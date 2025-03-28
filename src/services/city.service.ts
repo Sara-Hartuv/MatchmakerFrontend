@@ -9,13 +9,3 @@ export const addCity = async (name: string) => {
   });
   return response.data;
 };
-
-export const getCities = async () => {
-  try {
-    const response = await axiosInstance.get(ENDPOINTS.getCities); // קריאה ל-API לקבלת רשימת הערים
-    return response.data; // החזרת רשימת הערים
-  } catch (error) {
-    console.error("שגיאה בשליפת רשימת הערים:", error);
-    throw error; // זריקת השגיאה כדי לטפל בה במקום אחר
-  }
-};

@@ -18,22 +18,25 @@ export const getUnConfirmationCandidates = async () => {
   const response = await axiosInstance.get(ENDPOINTS.getUnConfirmationCandidates);
   return response.data;
 };
+// **שליפת כל המועמדים שאושרו**
+export const getConfirmationCandidates = async () => {
+  const response = await axiosInstance.get(ENDPOINTS.getConfirmationCandidates);
+  return response.data;
+};
 
 // **אישור מועמד לפי ID**
-export const confirmCandidate = async (id: number) => {
+export const confirmCandidate = async (id: string) => {
   const response = await axiosInstance.put(ENDPOINTS.confirmCandidate(id));
   return response.data;
 };
 
+// **עדכון מועמד לפי ID**
 export const updateCandidate = async (id: number, formData: any) => {
-
-  // ביצוע הבקשה לשרת
   const response = await axiosInstance.put(ENDPOINTS.updateCandidate(id), formData, {
     headers: {
-      "Content-Type": "application/json" // חשוב להגדיר את סוג התוכן כ-multipart/form-data
+      "Content-Type": "application/json",
     },
   });
-
   return response.data;
 };
 
@@ -46,3 +49,13 @@ export const deleteCandidate = async (id: number) => {
  export const getAllMyMatch = async (id: number) => {
   const response = await axiosInstance.get(ENDPOINTS.getProposalsForUser(id));
   return response;};// מחזיר את התשובה מהשרת
+
+  export const getMatchByIdFromCandidate = async (id: number) => {
+    const response = await axiosInstance.put(ENDPOINTS.getMatchByIdCandidate(id), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  };
+  

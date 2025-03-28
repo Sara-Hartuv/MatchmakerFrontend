@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getConfirmationCandidates } from "../services/matchmaker.service";
+import { getConfirmationCandidates } from "../services/candidate.service";
 import "../styles/getCandidates.css";
 
 interface Candidate {

@@ -1,8 +1,8 @@
-// export type UserType = {
-//     id: number;
-//     email: string;
-//     role: "candidate" | "matchmaker" | "admin";
-// };
+export type UserType = {
+    id: number;
+    email: string;
+    role: "candidate" | "matchmaker" | "admin";
+};
 
 
 // export type AuthUser = {

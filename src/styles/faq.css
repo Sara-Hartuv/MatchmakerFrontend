@@ -1,0 +1,58 @@
+.faq-container {
+    padding: 20px;
+    background-color:  #2d3748;
+    direction: rtl; /* להציג את התוכן מימין לשמאל */
+    margin-top: 35%
+  }
+  
+  h1 {
+    text-align: center;
+    color: #ffffff
+  }
+  
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-question {
+    padding: 15px;
+    background-color:#8e44ad; ;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+  }
+  .faq-question:hover {
+    background-color: #9c63b3; /* צבע סגול בהיר בעת ריחוף */
+  }
+  
+  .faq-question h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .arrow {
+    font-size: 18px;
+  }
+  
+  .faq-answer {
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .faq-answer p {
+    margin: 0;
+    font-size: 16px;
+    color: #7f8c8d;
+  }
+  

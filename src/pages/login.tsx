@@ -31,7 +31,7 @@ export default function LoginPage() {
    
 
       const decodedUser = jwtDecode<any>(token);
-
+   
      console.log("Decoded User:", decodedUser);
 
       dispatch(setUser(token));
